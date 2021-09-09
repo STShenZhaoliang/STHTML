@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <span>A:</span>
+            <span>
+                <input type="text" v-model="a">
+            </span>
+        </div>
+        <div>
+            <span>B:</span>
+            <span>
+                <input type="text" v-model="b">
+            </span>
+        </div>
+        <div>
+            <button @click="handle">add</button>
+        </div>
+        <div>
+            <span>result:</span>
+            <span v-text='result'></span>
+        </div>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                a: "",
+                b: "",
+                result: ""
+            },
+            methods: {
+                handle: function() {
+                    this.result = parseInt(this.a) + parseInt(this.b)
+                }
+            },
+            computed: {
+
+            },
+            watch: {
+                a: function() {
+                    this.result = parseInt(this.a) + parseInt(this.b)
+                },
+                b: function() {
+                    this.result = parseInt(this.a) + parseInt(this.b)
+                }
+
+            }
+        })
+    </script>
+</body>
+
+</html>

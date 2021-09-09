@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>{{num}}</div>
+        <div>
+            <button v-on:click="handle1">点击handle1</button>
+            <button v-on:click="handle1()">点击handle1</button>
+            <hr>
+            <button v-on:click="handle2">点击handle2</button>
+            <!-- 触发报错，需要传递值 -->
+            <button v-on:click="handle2()">点击handle2</button>
+            <hr>
+            <!-- 未传递值，将接受 事件本身值 -->
+            <button v-on:click="handle3">点击handle3</button>
+            <button v-on:click="handle3('hello st')">点击handle3</button>
+            <hr>
+            <!-- 触发报错，需要传递值 -->
+            <button v-on:click="handle4">点击handle4</button>
+            <!-- 触发报错，需要传递值 -->
+            <button v-on:click="handle4('hello st')">点击handle4</button>
+            <button v-on:click="handle4('hello st', $event)">点击handle4</button>
+        </div>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                num: 0
+            },
+            methods: {
+                handle1: function() {
+                    console.log(event)
+                    console.dir(event)
+
+                    console.log(event.target.innerHTML)
+                },
+                handle2: function(e) {
+                    console.log(e.target.innerHTML)
+                    console.log(event.target.innerHTML)
+                },
+                handle3: function(msg) {
+                    console.log(msg)
+                    console.log(event.target.innerHTML)
+                },
+                handle4: function(msg, event) {
+                    console.log(msg)
+                    console.log(event.target.innerHTML)
+                },
+            },
+        })
+    </script>
+</body>
+
+</html>

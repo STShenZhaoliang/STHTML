@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <i>{{num}}</i>
+        <hr>
+        <button @click="handle0">点击handle0</button>
+        <button @click="handle1">点击handle1</button>
+        <hr>
+        <div @click="handle0">
+            <button @click="handle1">冒泡handle0点击handle1</button>
+        </div>
+        <hr>
+        <div @click="handle0">
+            <button @click.stop="handle1">阻止冒泡handle0点击handle1</button>
+        </div>
+        <hr>
+        <div>
+            <button @click.prevent="handle2">点击handle2</button>
+            <a href="https://www.baidu.com/" @click.prevent="handle2">点击百度</a>
+            <a href="https://www.baidu.com/" @click="handle2">点击百度</a>
+        </div>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                num: 0
+            },
+            methods: {
+                handle0: function() {
+                    this.num++
+                },
+                handle1: function(e) {
+                    e.stopPropagation();
+                    this.num += 10
+                },
+                handle2: function(e) {
+                    console.log(e)
+                    e.preventDefault();
+
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

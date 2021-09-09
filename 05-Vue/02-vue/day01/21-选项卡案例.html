@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .tab ul {
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .tab ul li {
+            box-sizing: border-box;
+            padding: 0;
+            float: left;
+            width: 100px;
+            height: 45px;
+            line-height: 45px;
+            list-style: none;
+            text-align: center;
+            border-top: 1px solid gray;
+            border-right: 1px solid gray;
+        }
+        
+        .tab ul li:first-child {
+            border-left: 1px solid gray;
+        }
+        
+        .active {
+            background-color: orange;
+        }
+        
+        .tab div {
+            width: 500px;
+            height: 300px;
+            border: 1px solid blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="tab">
+            <ul>
+                <li @click='change(index)' :class="currentIndex==index ? 'active' : ''" v-for="(item, index) in list">{{item.title}}</li>
+            </ul>
+            <div :style="bg"></div>
+        </div>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                currentIndex: 0,
+                list: [{
+                    id: 1,
+                    title: 'apple',
+                    color: 'red'
+                }, {
+                    id: 2,
+                    title: 'orange',
+                    color: 'green'
+                }, {
+                    id: 3,
+                    title: 'lemon',
+                    color: 'blue'
+                }],
+                bg: {
+                    backgroundColor: "red"
+                }
+            },
+            methods: {
+                change: function(index) {
+                    this.currentIndex = index
+                    this.bg.backgroundColor = this.list[index].color
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

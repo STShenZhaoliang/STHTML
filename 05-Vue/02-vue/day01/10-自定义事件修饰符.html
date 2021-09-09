@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <i>info: {{info}}</i>
+        <input type="text" @keyup='handle' v-model='info'>
+        <input type="text" @keyup.aaa='handle' v-model='info'>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        // 两种写法
+        // Vue.config.keyCodes = {
+        //     aaa: 65
+        // }
+
+        Vue.config.keyCodes.aaa = 65
+        new Vue({
+            el: "#app",
+            data: {
+                info: ""
+            },
+            methods: {
+                handle: function() {
+                    console.log(event.keyCode)
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

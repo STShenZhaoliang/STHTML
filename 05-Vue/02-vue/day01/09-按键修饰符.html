@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <i>用户名：{{username}}</i>
+        <i>密码：{{pwd}}</i>
+        <form action="">
+            <div>
+                用户名：
+                <input type="text" @keyup.delete='clearContent' v-model="username">
+            </div>
+            <div>
+                密码：
+                <input type="text" @keyup.f1='handleSubmit' v-model="pwd">
+            </div>
+            <div>
+                <input type="button" @click='handleSubmit' value="提交">
+            </div>
+        </form>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        Vue.config.keyCodes = {
+            f1: 13
+        }
+        new Vue({
+            el: "#app",
+            data: {
+                username: "",
+                pwd: ""
+            },
+            methods: {
+                clearContent: function() {
+                    this.username = ""
+                },
+                handleSubmit: function() {
+                    console.log(this.username, this.pwd)
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
