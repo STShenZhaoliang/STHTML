@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .grid {
+            margin: auto;
+            width: 500px;
+            text-align: center;
+        }
+        
+        .grid table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .grid th,
+        td {
+            padding: 10;
+            border: 1px dashed orange;
+            height: 35px;
+            line-height: 35px;
+        }
+        
+        .grid th {
+            background-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="grid">
+            <div>
+                <h4>图书管理</h4>
+                <span>{{msg}}</span>
+                <div class="book">
+                    <label>编号：
+                        <input type="text" v-model="id" :disabled="isEdit">
+                    </label>
+                    <label>名称：
+                        <input type="text" v-model="name">
+                    </label>
+                    <button @click="add">提交</button>
+                </div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <td>编号</td>
+                        <td>名称</td>
+                        <td>日期</td>
+                        <td>操作</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item, index) in books" :key="item.id">
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.date}}</td>
+                        <td>
+                            <a href="" @click.prevent="change(item)">修改</a>
+                            <span>|</span>
+                            <a href="" @click.prevent>删除</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        //图书管理-图书列表展示功能
+        //注意事项：<a href="" @click.prevent>修改</a>
+        //事件绑定时，可以只添加修饰符，而不绑定事件函数
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                books: [{
+                    id: 1,
+                    name: '三国演义',
+                    date: ''
+                }, {
+                    id: 2,
+                    name: '水浒传',
+                    date: ''
+                }, {
+                    id: 3,
+                    name: '红楼梦',
+                    date: ''
+                }, {
+                    id: 4,
+                    name: '西游记',
+                    date: ''
+                }],
+                id: '',
+                name: '',
+                msg: '',
+                isEdit: false
+            },
+            methods: {
+                add: function() {
+                    if (this.id == "" || this.name == "") {
+                        this.msg = "信息不能为空"
+                    } else {
+                        if (this.isEdit) {
+                            this.books.some((item) => {
+                                if (item.id == this.id) {
+                                    item.name = this.name
+                                    return
+                                }
+                            })
+                        } else {
+                            this.books.push({
+                                id: this.id,
+                                name: this.name,
+                                date: ""
+                            })
+                        }
+                    }
+                },
+                change: function(item) {
+                    console.log(item)
+                    this.id = item.id
+                    this.name = item.name
+                    this.isEdit = true
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

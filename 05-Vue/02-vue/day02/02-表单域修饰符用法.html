@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model.number="age">
+        <hr>
+        <input type="text" v-model.trim="msg">
+        <div>msg{{msg}}</div>
+        <hr>
+        <input type="text" v-model.lazy="info">
+        <div>info{{info}}</div>
+
+
+        <button @click="handle">handle</button>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                age: '',
+                msg: "",
+                info: ''
+            },
+            methods: {
+                handle: function() {
+                    console.log(this.age)
+                    console.dir(this.age)
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
