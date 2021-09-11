@@ -8,14 +8,43 @@
 
 <body>
     <div id="app">
-
+        <menu-item :smsg="pmsg" :sarr="parr" :sobj="pobj"></menu-item>
     </div>
-    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript" src="../js/vue.js"></script>
     <script type="text/javascript">
+        Vue.component('menu-item', {
+            props: ['smsg', 'sarr', 'sobj'],
+            template: `
+            <div>
+            <div>{{smsg}}</div>
+            <div>{{sarr}}</div>
+            <div>{{sobj}}</div>
+            <hr>
+            <div>{{typeof smsg}}</div>
+            <div>{{typeof sarr}}</div>
+            <div>{{typeof sarr}}</div>
+            <hr>
+            sarr
+            <ul>
+                <li v-for="item in sarr">{{item}}</li>
+            </ul>
+            <hr>
+            sobj
+            <ul>
+                <li v-for="(v, k, i) in sobj">{{v + "--" + k + "--" + i}}</li>
+            </ul>
+            </div>
+            `
+        })
         var vm = new Vue({
             el: '#app',
             data: {
-
+                pmsg: "p-msg",
+                parr: ["p-arr0", "p-arr1", "p-arr2"],
+                pobj: {
+                    name: 'st',
+                    age: '12'
+                }
             }
         });
     </script>

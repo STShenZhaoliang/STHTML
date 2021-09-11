@@ -8,10 +8,39 @@
 
 <body>
     <div id="app">
-
+        <base-layout>
+            main-hello
+            <p slot="header">header-hello</p>
+            <p slot="footer">footer-hello</p>
+            <p slot="header">header-hello</p>
+            <p slot="footer">footer-hello</p>
+        </base-layout>
+        <base-layout>
+            <template slot="header">
+                <p>header-st</p>
+            </template> main-st
+            <template slot="footer">
+               <p>footer-st</p>
+            </template>
+        </base-layout>
     </div>
-    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript" src="../js/vue.js"></script>
     <script type="text/javascript">
+        Vue.component('base-layout', {
+            template: `
+            <div>
+            <header>
+                <slot name='header'></slot>
+            </header>
+            <main>
+                <slot></slot>
+            </main>
+            <footer>
+                <slot name='footer'></slot>
+            </footer>
+            </div>
+            `
+        })
         var vm = new Vue({
             el: '#app',
             data: {

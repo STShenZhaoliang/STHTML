@@ -8,15 +8,61 @@
 
 <body>
     <div id="app">
-
+        <div>{{pmsg}}</div>
+        <button @click="handle(20)">点击</button>
+        <menu-item0 @s-handle="handle"></menu-item0>
+        <menu-item1 @s-handle="handle"></menu-item1>
     </div>
-    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript" src="../js/vue.js"></script>
     <script type="text/javascript">
+        var hub = new Vue()
+
+        Vue.component("menu-item0", {
+            props: [],
+            template: `
+            <div>
+            <button @click="handle0">item0点击 - item1加5</button>
+            </div>
+            `,
+            methods: {
+                handle0: function() {
+                    // this.$emit('s-handle', 'menu-item0')
+                    hub.$emit('item1-event', 5)
+                }
+            }
+        })
+        Vue.component("menu-item1", {
+            props: [],
+            data: function() {
+                return {
+                    num: 10
+                }
+            },
+            template: `
+            <div>
+            item1的值为{{num}}
+            </div>
+            `,
+            methods: {
+
+            },
+            mounted: function() {
+                hub.$on("item1-event", (val) => {
+                    this.num += val
+                })
+            }
+        })
+
         var vm = new Vue({
             el: '#app',
             data: {
-
-            }
+                pmsg: "p-msg"
+            },
+            methods: {
+                handle: function(val) {
+                    hub.$off('item1-event')
+                }
+            },
         });
     </script>
 </body>

@@ -8,14 +8,42 @@
 
 <body>
     <div id="app">
-
+        <base-layout :list="list">
+            <template slot-scope="slotSt">
+                <strong v-if="slotSt.info.id == 2">
+                    {{slotSt.info.name}}
+                </strong>
+                <span v-else>
+                    {{slotSt.info.name}}
+                </span>
+            </template>
+        </base-layout>
     </div>
-    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript" src="../js/vue.js"></script>
     <script type="text/javascript">
+        Vue.component('base-layout', {
+            props: ["list"],
+            template: `
+            <div>
+            <li v-for="item in list" :key="item.id">
+                <slot :info="item">{{item.name}}</slot>
+            </li>
+            </div>
+            `
+        })
         var vm = new Vue({
             el: '#app',
             data: {
-
+                list: [{
+                    id: 1,
+                    name: "st1",
+                }, {
+                    id: 2,
+                    name: "st2",
+                }, {
+                    id: 3,
+                    name: "st3",
+                }]
             }
         });
     </script>

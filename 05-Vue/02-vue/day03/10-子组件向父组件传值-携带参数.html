@@ -8,15 +8,56 @@
 
 <body>
     <div id="app">
+        <div :style="{fontSize: fontSize + 'px'}">{{pmsg}}</div>
+        <button @click="handle">点击</button>
+        <menu-item :sarr="parr" @s-handle="handle" @s-handlemore="handleMore"></menu-item>
 
     </div>
-    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript" src="../js/vue.js"></script>
     <script type="text/javascript">
+        Vue.component("menu-item", {
+            props: ["sarr"],
+            template: `
+            <div>
+            <ul>
+                <li v-for="(item, index) in sarr" :key="index">{{item}}</li>
+            </ul>
+            //正确写法 
+            <button @click="$emit('s-handle', 10)">点击</button>
+            <button @click="$emit('s-handle', '10')">点击</button>
+            <button @click="$emit('s-handle', ['a', 'b'])">点击</button>
+            <button @click="$emit('s-handle', {'a':1, 'b':2})">点击</button>
+
+            <button @click="$emit('s-handlemore', 10, 20)">点击</button>
+            <button @click="$emit('s-handlemore', '10', '20')">点击</button>
+            <button @click="$emit('s-handlemore', ['a', 'b'], ['c', 'd'])">点击</button>
+            <button @click="$emit('s-handlemore', {'a':1, 'b':2}, {'c':1, 'd':2})">点击</button>
+
+            //错误写法 
+            <button @click="$emit('s-handle(10)')">点击</button>
+            
+            </div>
+            `
+        })
         var vm = new Vue({
             el: '#app',
             data: {
-
-            }
+                pmsg: "p-msg",
+                parr: ["p-arr0", "p-arr1", "p-arr2"],
+                fontSize: 30
+            },
+            methods: {
+                handle: function(val) {
+                    console.log(val)
+                    console.log(typeof val)
+                },
+                handleMore: function(v1, v2) {
+                    console.log(v1)
+                    console.log(typeof v1)
+                    console.log(v2)
+                    console.log(typeof v2)
+                }
+            },
         });
     </script>
 </body>

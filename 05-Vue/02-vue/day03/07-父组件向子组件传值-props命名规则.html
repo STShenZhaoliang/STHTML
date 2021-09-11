@@ -8,14 +8,100 @@
 
 <body>
     <div id="app">
+        <!-- 错误使用 -->
+        <!-- <menu-item :menuTitle="ptitle"></menu-item> -->
+        <!-- <menu-item :MenuTitle="ptitle"></menu-item> -->
+        <!-- <menu-item :menutitle="ptitle"></menu-item> -->
+
+        <!-- 正确使用 -->
+        <!-- <menu-item :menu-Title="ptitle"></menu-item>
+        <menu-item :Menu-Title="ptitle"></menu-item>
+        <menu-item :menu-title="ptitle"></menu-item> -->
+
+        <!-- 错误使用 -->
+        <!-- <menu-item :menuMsg="pmsg"></menu-item> -->
+        <!-- <menu-item :MenuMsg="pmsg"></menu-item> -->
+        <!-- <menu-item :menumsg="pmsg"></menu-item> -->
+
+        <!-- 正确使用 -->
+        <!-- <menu-item :menu-Msg="pmsg"></menu-item>
+        <menu-item :Menu-Msg="pmsg"></menu-item>
+        <menu-item :menu-msg="pmsg"></menu-item> -->
+
+        <!-- 标准使用 -->
+        <menu-item :menu-title="ptitle" :menu-msg="pmsg"></menu-item>
+        <!-- <third-com :test-title="ptitle"></third-com> -->
 
     </div>
-    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript" src="../js/vue.js"></script>
     <script type="text/javascript">
+        Vue.component("third-com", {
+            props: ["testTitle"],
+            template: "<div>{{testTitle}}</div>"
+        })
+        Vue.component("menu-item", {
+            props: ["menuTitle", "menu-msg"],
+            data: function() {
+                return {
+                    msg: "子组件本身数据"
+                }
+            },
+            template: `<div>
+                msg:{{msg}} 
+                <br> 
+                <!-- 正确使用 -->
+                父组件menuTitle:{{menuTitle}} 
+                <!-- 错误使用 -->
+                <!-- 父组件MenuTitle:{{MenuTitle}} 父组件menutitle:{{menutitle}} -->
+                <!-- 父父组件menu-Title:{{menu-Title}}  父组件Menu-Title:{{Menu-Title}} 父组件menu-title:{{menu-title}} -->
+                <br>
+                <!-- 正确使用 -->
+                父组件menuMsg:{{menuMsg}} 
+                <!-- 错误使用 -->
+                <!-- 父组件MenuMsg:{{MenuMsg}} 父组件menumsg:{{menumsg}} -->
+                <!-- 父组件menu-Msg:{{menu-Msg}}  父组件Menu-Msg:{{Menu-Msg}} 父组件menu-msg:{{menu-msg}} -->
+                <hr>
+
+                标准使用 
+                父组件menuTitle:{{menuTitle}}  父组件menuMsg:{{menuMsg}} 
+
+                <hr>
+                第三方组件, 都以字符串显示
+                <!-- <third-com test-title={{menu-title}}></third-com>-->
+                <!-- <third-com test-title={{menuMsg}}></third-com>-->
+                <!-- <third-com test-title=ptitle></third-com>-->
+                <!-- <third-com test-title="{{menu-title}}"></third-com>-->
+                <!--  <third-com test-title="{{menuMsg}}"></third-com>-->
+                <!-- <third-com test-title="ptitle"></third-com>-->
+
+                标准使用 
+                <third-com test-title="ptitle"></third-com>
+
+                <hr>
+                // 编译失败
+                <!-- <third-com :test-title={{menuTitle}}></third-com>-->
+                <!-- <third-com :test-title="{{menuTitle}}"></third-com>-->
+
+
+                // 错误绑定
+                <third-com :test-title=menu-title></third-com>
+                <third-com :test-title="menu-title"></third-com>
+
+                // 正确绑定
+                <third-com :test-title=menuTitle></third-com>
+                <third-com :test-title="menuTitle"></third-com>
+                
+                
+                标准使用 
+                <third-com :test-title="menuTitle"></third-com>
+
+                </div>`
+        })
         var vm = new Vue({
             el: '#app',
             data: {
-
+                ptitle: "p-title",
+                pmsg: "p-msg"
             }
         });
     </script>

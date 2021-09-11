@@ -8,15 +8,54 @@
 
 <body>
     <div id="app">
+        <div :style="{fontSize: fontSize + 'px'}">{{pmsg}}</div>
+        <button @click="handle">点击</button>
+        <!-- <menu-item :sarr="parr" @shandle="handle"></menu-item>
+        <menu-item :sarr="parr" @sHandle="handle"></menu-item>
+        <menu-item :sarr="parr" @SHandle="handle"></menu-item>
+        <menu-item :sarr="parr" @s-handle="handle"></menu-item>
+        <menu-item :sarr="parr" @s-Handle="handle"></menu-item>
+        <menu-item :sarr="parr" @S-Handle="handle"></menu-item> -->
+
+
+        <!-- 正确写法 -->
+        <menu-item :sarr="parr" @shandle="handle"></menu-item>
+        <menu-item :sarr="parr" @s-handle="handle"></menu-item>
 
     </div>
-    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript" src="../js/vue.js"></script>
     <script type="text/javascript">
+        Vue.component("menu-item", {
+            props: ["sarr"],
+            template: `
+            <div>
+            <ul>
+                <li v-for="item in sarr" :key="index">{{item}}</li>
+            </ul>
+            //正确写法 emit 要对应
+            <button @click="$emit('s-handle')">点击</button>
+            <button @click="$emit('shandle')">点击</button>
+            
+            //错误写法
+            <button @click="$emit('sHandle')">点击</button>
+            <button @click="$emit('SHandle')">点击</button>
+            <button @click="$emit('s-Handle')">点击</button>
+            <button @click="$emit('S-Handle')">点击</button>
+            </div>
+            `
+        })
         var vm = new Vue({
             el: '#app',
             data: {
-
-            }
+                pmsg: "p-msg",
+                parr: ["p-arr0", "p-arr1", "p-arr2"],
+                fontSize: 30
+            },
+            methods: {
+                handle: function() {
+                    this.fontSize += 10
+                }
+            },
         });
     </script>
 </body>

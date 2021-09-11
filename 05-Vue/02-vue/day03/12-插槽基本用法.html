@@ -8,10 +8,19 @@
 
 <body>
     <div id="app">
-
+        <alert-box></alert-box>
+        <alert-box>hello</alert-box>
     </div>
-    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript" src="../js/vue.js"></script>
     <script type="text/javascript">
+        Vue.component('alert-box', {
+            template: `
+            <div>
+            <strong>Error</strong>
+            <slot>默认内容</slot>
+            </div>
+            `
+        })
         var vm = new Vue({
             el: '#app',
             data: {

@@ -8,10 +8,26 @@
 
 <body>
     <div id="app">
-
+        <second-com></second-com>
     </div>
-    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript" src="../js/vue.js"></script>
     <script type="text/javascript">
+        Vue.component("second-com", {
+            data: function() {
+                return {
+                    msg: "second-com"
+                }
+            },
+            template: "<div>{{msg}}:<third-com></third-com></div>"
+        })
+        Vue.component("third-com", {
+            data: function() {
+                return {
+                    msg: "third-com"
+                }
+            },
+            template: "<div>{{msg}}</div>"
+        })
         var vm = new Vue({
             el: '#app',
             data: {

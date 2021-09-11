@@ -9,9 +9,69 @@
 <body>
     <div id="app">
 
+        <!-- 错误使用 -->
+        <HelloWorld></HelloWorld>
+        <helloWorld></helloWorld>
+        <helloworld></helloworld>
+        <hr>
+        <!-- 正确使用 -->
+        <Hello-World></Hello-World>
+        <hello-World></hello-World>
+        <hello-world></hello-world>
+        <hr>
+        <!-- 错误使用 -->
+        <ButtonCounter></ButtonCounter>
+        <buttonCounter></buttonCounter>
+        <buttoncounter></buttoncounter>
+        <hr>
+        <!-- 正确使用 -->
+        <Button-Counter></Button-Counter>
+        <button-Counter></button-Counter>
+        <button-counter></button-counter>
+
     </div>
-    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript" src="../js/vue.js"></script>
     <script type="text/javascript">
+        /*
+              组件注册注意事项
+              如果使用驼峰式命名组件，那么在使用组件的时候，只能在字符串模板中用驼峰的方式使用组件，但是
+              在普通的标签模板中，必须使用短横线的方式使用组件
+            */
+        Vue.component("HelloWorld", {
+            data: function() {
+                return {
+                    msg: "st123"
+                }
+            },
+            template: "<div>{{msg}}</div>"
+        })
+
+        Vue.component("button-counter", {
+            data: function() {
+                return {
+                    count: 0
+                }
+            },
+            template: `
+            <div>
+            <button @click="handle">点击：{{count}}</button>
+            <button>测试</button>
+            <!-- 错误使用 -->
+            <helloworld></helloworld><hr>
+            <!-- 正确使用 -->
+            <HelloWorld></HelloWorld><hr>
+            <helloWorld></helloWorld><hr>
+            <Hello-World></Hello-World><hr>
+            <hello-World></hello-World><hr>
+            <hello-world></hello-world><hr>
+            </div>
+            `,
+            methods: {
+                handle: function() {
+                    this.count += 2
+                }
+            },
+        })
         var vm = new Vue({
             el: '#app',
             data: {
