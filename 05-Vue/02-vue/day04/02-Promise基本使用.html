@@ -8,8 +8,29 @@
 
 <body>
     <div>前后端交互</div>
-    <script type="text/javascript" src="../js/jquery.js"></script>
+
     <script type="text/javascript">
+        console.log(typeof Promise)
+        console.log(Promise)
+        var p = new Promise(function(resolve, reject) {
+            setTimeout(function() {
+                var flag = true
+                if (flag) {
+                    resolve("hello1");
+                    resolve("hello2");
+                    resolve("hello3");
+                } else {
+                    reject("error1");
+                    reject("error2");
+                    reject("error3");
+                }
+            }, 1000)
+        });
+        p.then(function(data) {
+            console.log(data)
+        }, function(error) {
+            console.log(error)
+        })
     </script>
 </body>
 

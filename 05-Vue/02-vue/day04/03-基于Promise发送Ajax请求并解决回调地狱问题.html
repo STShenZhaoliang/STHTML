@@ -8,8 +8,33 @@
 
 <body>
     <div>前后端交互</div>
-    <script type="text/javascript" src="../js/jquery.js"></script>
     <script type="text/javascript">
+        function queryData(url) {
+            var p = new Promise(function(resolve, reject) {
+                var xhr = new XMLHttpRequest()
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState != 4) return;
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        resolve(xhr.responseText)
+                    } else {
+                        reject("server error")
+                    }
+                };
+                xhr.open("get", url);
+                xhr.send(null);
+            })
+            return p
+        }
+
+        queryData('http://localhost:3000/data').then(function(data) {
+            console.log(data)
+            return queryData('http://localhost:3000/data1')
+        }).then(function(data) {
+            console.log(data)
+            return queryData('http://localhost:3000/data2')
+        }).then(function(data) {
+            console.log(data)
+        })
     </script>
 </body>
 

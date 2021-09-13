@@ -8,8 +8,26 @@
 
 <body>
     <div>前后端交互</div>
-    <script type="text/javascript" src="../js/jquery.js"></script>
-    <script type="text/javascript">
+    <script type="text/javascript" src="../js/axios.js"></script>
+    <script>
+        axios.interceptors.request.use(function(config) {
+            console.log(config.url)
+                // config.headers.mytoken = 'nihao'
+            return config
+        }, function(error) {
+            console.log(error)
+        })
+
+        axios.interceptors.response.use(function(ret) {
+            var data = ret.data
+            return data
+        }, function(error) {
+            console.log(error)
+        })
+
+        axios.get("http://localhost:3000/adata").then(function(data) {
+            console.log(data)
+        })
     </script>
 </body>
 

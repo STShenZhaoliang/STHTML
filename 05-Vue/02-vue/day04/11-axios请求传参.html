@@ -8,8 +8,48 @@
 
 <body>
     <div>前后端交互</div>
-    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/axios.js"></script>
     <script type="text/javascript">
+        // axios.get('http://localhost:3000/axios?id=1').then(function(ret) {
+        //     console.log(ret.data)
+        // })
+        // axios.get('http://localhost:3000/axios/2').then(function(ret) {
+        //     console.log(ret.data)
+        // })
+        // axios.get('http://localhost:3000/axios', {
+        //     params: {
+        //         id: 3
+        //     }
+        // }).then(function(ret) {
+        //     console.log(ret.data)
+        // })
+        // axios.delete('http://localhost:3000/axios', {
+        //     params: {
+        //         id: 4
+        //     }
+        // }).then(function(ret) {
+        //     console.log(ret.data)
+        // })
+        // axios.post('http://localhost:3000/axios', {
+        //     uname: 'st',
+        //     pwd: 5
+        // }).then(function(ret) {
+        //     console.log(ret.data)
+        // })
+
+        var params = new URLSearchParams();
+        params.append("uname", 'st')
+        params.append("pwd", 6)
+        axios.post('http://localhost:3000/axios', params).then(function(ret) {
+            console.log(ret.data)
+        })
+
+        axios.put('http://localhost:3000/axios/7', {
+            uname: 'st',
+            pwd: 8
+        }).then(function(ret) {
+            console.log(ret.data)
+        })
     </script>
 </body>
 

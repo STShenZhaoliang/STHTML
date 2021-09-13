@@ -8,8 +8,13 @@
 
 <body>
     <div>前后端交互</div>
-    <script type="text/javascript" src="../js/jquery.js"></script>
     <script type="text/javascript">
+        fetch('http://localhost:3000/json').then(function(data) {
+            return data.text()
+        }).then(function(data) {
+            var obj = JSON.parse(data)
+            console.log(obj)
+        })
     </script>
 </body>
 

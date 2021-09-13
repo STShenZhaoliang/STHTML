@@ -8,8 +8,43 @@
 
 <body>
     <div>前后端交互</div>
+    <div id="app">
+        <strong>结果是：{{result}}</strong>
+    </div>
     <script type="text/javascript" src="../js/jquery.js"></script>
+    <script src="../js/vue.js"></script>
     <script type="text/javascript">
+        // $.ajax({
+        //     url: "http://localhost:3000/data",
+        //     success: function(data) {
+        //         app.result = data
+        //     }
+        // })
+
+        $.ajax({
+            url: "http://localhost:3000/data",
+            success: function(data) {
+                app.result = data
+                $.ajax({
+                    url: "http://localhost:3000/data1",
+                    success: function(data) {
+                        app.result = data
+                        $.ajax({
+                            url: "http://localhost:3000/data2",
+                            success: function(data) {
+                                app.result = data
+                            }
+                        })
+                    }
+                })
+            }
+        })
+        var app = new Vue({
+            el: "#app",
+            data: {
+                result: "----"
+            }
+        })
     </script>
 </body>
 

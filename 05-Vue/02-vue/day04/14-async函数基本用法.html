@@ -8,8 +8,32 @@
 
 <body>
     <div>前后端交互</div>
-    <script type="text/javascript" src="../js/jquery.js"></script>
-    <script type="text/javascript">
+    <script type="text/javascript" src="../js/axios.js"></script>
+    <script>
+        axios.defaults.baseURL = 'http://localhost:3000/'
+        axios.get('adata').then(function(ret) {
+            console.log(ret.data);
+        })
+
+        // async function queryData() {
+        //     var ret = await axios.get('adata').then(function(ret) {
+        //         console.log("000" + ret.data);
+        //         return ret.data
+        //     })
+        // }
+
+        async function queryData() {
+            var ret = await new Promise(function(resolve, reject) {
+                setTimeout(() => {
+                    resolve("hello")
+                }, 1000);
+            })
+            return ret;
+        }
+
+        queryData().then(function(data) {
+            console.log("111" + data)
+        })
     </script>
 </body>
 
