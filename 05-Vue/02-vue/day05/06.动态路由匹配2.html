@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <!-- 导入 vue 文件 -->
+    <script src="../js/vue.js"></script>
+    <script src="../js/vue-router.js"></script>
+</head>
+
+<body>
+    <!-- 被 vue 实例控制的 div 区域 -->
+    <div id="app">
+        <router-link to="/user/1">用户1</router-link>
+        <router-link to="/user/2">用户2</router-link>
+        <router-link to="/user/3">用户3</router-link>
+
+        <router-link to="/mine">我的</router-link>
+        <router-view></router-view>
+    </div>
+
+    <script>
+        const User = {
+            props: ["id"],
+            template: "<h1>User 组件 -- id: {{id}}</h1>"
+        }
+
+        const Mine = {
+            template: `
+            <div>
+            <h1>Mine 组件</h1>
+            <router-link to="/mine/tab1">tab1</router-link>
+            <router-link to="/mine/tab2">tab2</router-link>
+            <router-view></router-view>
+            </div>
+            `
+        }
+
+        const Tab1 = {
+            template: "<h3>tab1 子组件</h3>"
+        }
+
+        const Tab2 = {
+            template: "<h3>tab2 子组件</h3>"
+        }
+
+        const router = new VueRouter({
+            routes: [{
+                path: "/",
+                redirect: "/user"
+            }, {
+                path: "/user/:id",
+                component: User,
+                props: true
+            }, {
+                path: "/mine",
+                component: Mine,
+                children: [{
+                    path: "/mine/tab1",
+                    component: Tab1
+                }, {
+                    path: "/mine/tab2",
+                    component: Tab2
+                }]
+            }]
+        })
+        const vm = new Vue({
+            el: "#app",
+            data: {},
+            router
+        })
+    </script>
+</body>
+
+</html>

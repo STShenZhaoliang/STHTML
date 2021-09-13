@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <!-- 导入 vue 文件 -->
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 被 vue 实例控制的 div 区域 -->
+    <div id="app">
+        <a href="#/home">主页</a>
+        <a href="#/keji">科技</a>
+        <a href="#/yule">娱乐</a>
+        <component :is='comName'></component>
+    </div>
+
+    <script>
+        const home = {
+            template: "<h2>主页信息</h2>"
+        }
+        const keji = {
+            template: "<h2>科技信息</h2>"
+        }
+        const yule = {
+            template: "<h2>娱乐信息</h2>"
+        }
+
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                comName: "home"
+            },
+            components: {
+                home,
+                keji,
+                yule
+            }
+        })
+
+        window.onhashchange = function() {
+            console.log(location.hash)
+            var comName = location.hash.slice(2)
+            console.log(comName)
+            vm.comName = comName
+        }
+    </script>
+</body>
+
+</html>

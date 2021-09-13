@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script src="../js/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <div>
+            <router-link to="/user">User</router-link>
+            <router-link to="/login">Login</router-link>
+        </div> -->
+        <router-view></router-view>
+    </div>
+    <script>
+        const User = {
+            template: `
+            <div>
+            <h1>This is User</h1>
+            </div>
+            `
+        }
+
+        const Login = {
+            template: `
+            <div>
+            <h1>This is Login</h1>
+            <router-link to="/tab1">账号登录</router-link>
+            <router-link to="/tab2">扫描登录</router-link>
+            <router-view></router-view>
+            </div>
+            `
+        }
+
+        const AccountLogin = {
+            template: `
+            <div>
+            <label>账号：
+                <input type="text">
+            </label>
+            <label>密码：
+                <input type="text">
+            </label>
+            </div>
+            `
+        }
+
+        const QrcodeLogin = {
+            template: `
+            <div>
+                <h2>扫我二维码</h2>
+                <img style="backgroundColor:red;width:100px;height: 100px;">
+            </div>
+            `
+        }
+
+        const App = {
+                template: `
+            <div>
+            <router-link to="/user">User</router-link>
+            <router-link to="/login">Login</router-link>
+            <router-view></router-view>
+            </div>
+            `
+            }
+            // const routes = [{
+            //     path: "/",
+            //     redirct: "/user"
+            // }, {
+            //     path: "/user",
+            //     component: User
+            // }, {
+            //     path: "/login",
+            //     component: Login,
+            //     children: [{
+            //         path: "/tab1",
+            //         component: AccountLogin,
+            //     }, {
+            //         path: "/tab2",
+            //         component: QrcodeLogin,
+            //     }]
+            // }]
+
+        const routes = [{
+            path: "/",
+            component: App,
+            redirct: "/user",
+            children: [{
+                path: "/user",
+                component: User
+            }, {
+                path: "/login",
+                component: Login,
+                children: [{
+                    path: "/tab1",
+                    component: AccountLogin,
+                }, {
+                    path: "/tab2",
+                    component: QrcodeLogin,
+                }]
+            }]
+        }]
+
+        const router = new VueRouter({
+            routes
+        })
+
+        new Vue({
+            el: "#app",
+            router
+        })
+    </script>
+</body>
+
+</html>
