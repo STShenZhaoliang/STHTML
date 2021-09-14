@@ -121,6 +121,7 @@ export default {
       // 2. 请求登录
       try {
         const { data } = await login(this.user)
+        console.log(data)
         this.$store.commit('setUser', data.data)
         this.$toast.success('登录成功')
 
@@ -170,6 +171,7 @@ export default {
   .toutiao {
     font-size: 37px;
   }
+
   .send-sms-btn {
     width: 152px;
     height: 46px;
