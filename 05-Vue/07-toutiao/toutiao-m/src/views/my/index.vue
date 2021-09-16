@@ -130,7 +130,6 @@ export default {
     background: url("~@/assets/banner.png");
     background-size: cover;
   }
-
   .not-login {
     display: flex;
     justify-content: center;
