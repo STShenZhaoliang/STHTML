@@ -1,5 +1,5 @@
 <template>
-  <div class="layout-container">布局
+  <div class="layout-container">
     <!-- 子路由出口 -->
     <router-view />
     <!-- /子路由出口 -->
@@ -50,7 +50,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.layout-containner {
+.layout-container {
   .layout-tabbar {
     i.toutiao {
       font-size: 40px;
