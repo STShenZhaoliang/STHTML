@@ -185,6 +185,21 @@ app.get('/app/v1_0/channels', (req, res) => {
             }, {
                 id: 4,
                 name: '体育4'
+            },{
+                id: 5,
+                name: '体育5'
+            }, {
+                id: 6,
+                name: '体育6'
+            }, {
+                id: 7,
+                name: '体育7'
+            }, {
+                id: 8,
+                name: '体育8'
+            }, {
+                id: 9,
+                name: '体育9'
             }]
         }
     });
