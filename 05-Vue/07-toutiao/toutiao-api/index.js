@@ -164,6 +164,32 @@ app.get('/app/v1_0/user/channels', (req, res) => {
     });
 })
 
+// 获取频道列表
+app.get('/app/v1_0/channels', (req, res) => {
+    console.log(req.body)
+    // res.send('authorizations')
+    res.json({
+        data: {
+            channels: [{
+                id: 0,
+                name: '体育0'
+            }, {
+                id: 1,
+                name: '体育1'
+            }, {
+                id: 2,
+                name: '体育2'
+            }, {
+                id: 3,
+                name: '体育3'
+            }, {
+                id: 4,
+                name: '体育4'
+            }]
+        }
+    });
+})
+
 // 获取文章列表
 app.get('/app/v1_1/articles', (req, res) => {
     console.log(req.body)

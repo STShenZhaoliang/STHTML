@@ -7,8 +7,8 @@
     <!-- 标签导航栏 -->
     <!--
       route: 开启路由模式
-    -->
-    <van-tabbar class="layout-tabbar" @change="onChange">
+     -->
+    <van-tabbar class="layout-tabbar" route>
       <van-tabbar-item to="/">
         <i slot="icon" class="toutiao toutiao-shouye"></i>
         <span class="text">首页</span>
@@ -26,6 +26,7 @@
         <span class="text">{{ $store.state.user ? '我的' : '未登录' }}</span>
       </van-tabbar-item>
     </van-tabbar>
+    <!-- /标签导航栏 -->
   </div>
 </template>
 
@@ -35,21 +36,18 @@ export default {
   components: {},
   props: {},
   data () {
-    return {}
+    return {
+    }
   },
   computed: {},
   watch: {},
   created () {},
   mounted () {},
-  methods: {
-    onChange: function (val) {
-      console.log(val)
-    }
-  }
+  methods: {}
 }
 </script>
 
-<style lang="less" scoped>
+<style scoped lang="less">
 .layout-container {
   .layout-tabbar {
     i.toutiao {
@@ -59,6 +57,5 @@ export default {
       font-size: 20px;
     }
   }
-
 }
 </style>

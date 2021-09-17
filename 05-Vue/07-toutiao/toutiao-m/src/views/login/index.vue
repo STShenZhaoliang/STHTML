@@ -121,7 +121,6 @@ export default {
       // 2. 请求登录
       try {
         const { data } = await login(this.user)
-        console.log(data)
         this.$store.commit('setUser', data.data)
         this.$toast.success('登录成功')
 
@@ -173,7 +172,7 @@ export default {
   }
 
   .send-sms-btn {
-    width: 162px;
+    width: 152px;
     height: 46px;
     line-height: 46px;
     background-color: #ededed;
