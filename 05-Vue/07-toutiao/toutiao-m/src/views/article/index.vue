@@ -92,6 +92,7 @@
           :source="article.art_id"
           :list="commentList"
           @onload-success="totalCommentCount = $event.total_count"
+          @reply-click="onReplyClick"
         />
         <!-- /文章评论列表 -->
         <!-- 底部区域 -->
@@ -154,6 +155,28 @@
       </div>
       <!-- /加载失败：其它未知错误（例如网络原因或服务端异常） -->
     </div>
+
+    <!-- 评论回复 -->
+    <!--
+      弹出层是懒渲染的：只有在第一次展示的时候才会渲染里面的内容，之后它的关闭和显示都是在切换内容的显示和隐藏
+     -->
+    <van-popup
+      v-model="isReplyShow"
+      position="bottom"
+      style="height: 100%;"
+    >
+      <!--
+        v-if 条件渲染
+          true：渲染元素节点
+          false：不渲染
+       -->
+      <comment-reply
+        v-if="isReplyShow"
+        :comment="currentComment"
+        @close="isReplyShow = false"
+      />
+    </van-popup>
+    <!-- /评论回复 -->
   </div>
 </template>
 
@@ -165,6 +188,7 @@ import CollectArticle from '@/components/collect-article'
 import LikeArticle from '@/components/like-article'
 import CommentList from './components/comment-list'
 import CommentPost from './components/comment-post'
+import CommentReply from './components/comment-reply'
 
 export default {
   name: 'ArticleIndex',
@@ -173,7 +197,15 @@ export default {
     CollectArticle,
     LikeArticle,
     CommentList,
-    CommentPost
+    CommentPost,
+    CommentReply
+  },
+  // 给所有的后代组件提供数据
+  // 注意：不要滥用
+  provide: function () {
+    return {
+      articleId: this.articleId
+    }
   },
   props: {
     articleId: {
@@ -189,7 +221,9 @@ export default {
       followLoading: false,
       totalCommentCount: 0,
       isPostShow: false, // 控制发布评论的显示状态
-      commentList: [] // 评论列表
+      commentList: [], // 评论列表
+      isReplyShow: false,
+      currentComment: {} // 当前点击回复的评论项
     }
   },
   computed: {},
@@ -259,6 +293,13 @@ export default {
       this.isPostShow = false
       // 将发布内容显示到列表顶部
       this.commentList.unshift(data.new_obj)
+    },
+
+    onReplyClick (comment) {
+      this.currentComment = comment
+
+      // 显示评论回复弹出层
+      this.isReplyShow = true
     }
   }
 }
