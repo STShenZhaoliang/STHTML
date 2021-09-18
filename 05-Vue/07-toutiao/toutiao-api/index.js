@@ -138,6 +138,38 @@ app.get('/app/v1_0/user', (req, res) => {
     });
 })
 
+// 获取用户搜索列表
+app.get('/app/v1_0/suggestion', (req, res) => {
+    console.log(req.body)
+    // res.send('authorizations')
+    res.json({
+        data: {
+            options: ['st1', 'st2', 'st3']
+        }
+    });
+})
+
+// 获取用户搜索结果列表
+app.get('/app/v1_0/search', (req, res) => {
+    console.log(req.body)
+    // res.send('authorizations')
+    res.json({
+        data: {
+            results: [
+                {
+                    title: 'search1'
+                },
+                {
+                    title: 'search2'
+                },
+                {
+                    title: 'search3'
+                }
+            ]
+        }
+    });
+})
+
 // 获取用户频道列表
 app.get('/app/v1_0/user/channels', (req, res) => {
     console.log(req.body)
