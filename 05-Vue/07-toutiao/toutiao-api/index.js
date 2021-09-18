@@ -259,6 +259,67 @@ app.get('/app/v1_1/articles', (req, res) => {
     });
 })
 
+// 取消收藏文章
+app.delete('/app/v1_0/article/collections/:id', (req, res) => {
+    console.log('axios delete 传递参数' + req.params.id)
+    res.json({
+        data: {
+            msg: 'success'
+        }
+    })
+})
+
+// 收藏文章
+app.post('/app/v1_0/article/collections', (req, res) => {
+    console.log('axios post 传递参数' + req.body)
+    res.json({
+        data: {
+            msg: 'success'
+        }
+    })
+})
+
+// 关注用户
+app.post('/app/v1_0/user/followings', (req, res) => {
+    console.log('axios post 传递参数' + req.body)
+    res.json({
+        data: {
+            msg: 'success'
+        }
+    })
+})
+
+// 取消关注用户
+app.delete('/app/v1_0/user/followings/:id', (req, res) => {
+    console.log('axios delete 传递参数' + req.params.id)
+    res.json({
+        data: {
+            msg: 'success'
+        }
+    })
+})
+
+// 点赞文章
+app.post('/app/v1_0/article/likings', (req, res) => {
+    console.log('axios post 传递参数' + req.body)
+    res.json({
+        data: {
+            msg: 'success'
+        }
+    })
+})
+
+// 取消点赞文章
+app.delete('/app/v1_0/article/likings/:id', (req, res) => {
+    console.log('axios delete 传递参数' + req.params.id)
+    res.json({
+        data: {
+            msg: 'success'
+        }
+    })
+})
+
+
 // 获取文章
 app.get('/app/v1_0/articles/:id', (req, res) => {
     console.log('axios get (Restful) 传递参数' + req.params.id)
@@ -278,7 +339,7 @@ app.get('/app/v1_0/articles/:id', (req, res) => {
     <p>自动驾驶不仅关系到车，也关系到路，在车路协同方面，北斗能够发挥什么作用？</p>`,
             art_id: '23',
             is_collected: true,
-            attitude: true
+            attitude: -1
         
         }
     });
