@@ -244,6 +244,7 @@ app.get('/app/v1_1/articles', (req, res) => {
     res.json({
         data: {
             results: [{
+                art_id: 1,
                 title: "title",
                 cover: {
                     type: 1,
@@ -251,9 +252,34 @@ app.get('/app/v1_1/articles', (req, res) => {
                 },
                 aut_name: 'aut_name',
                 comm_count: 1000,
-                pubdate: '2021年09月16日18:09:02'
+                pubdate: '2021-09-18 10:08:01'
             }],
             pre_timestamp: 111
+        }
+    });
+})
+
+// 获取文章
+app.get('/app/v1_0/articles/:id', (req, res) => {
+    console.log('axios get (Restful) 传递参数' + req.params.id)
+    res.json({
+        data: {
+            title: "标题111111",
+            aut_photo: "https://tse2-mm.cn.bing.net/th/id/OIP-C.dlrfN1istVGYhf9cKLSnDAHaLH?w=192&h=288&c=7&r=0&o=5&dpr=2&pid=1.7",
+            aut_name: "作者22222",
+            pubdate: '2021-09-18 11:18:49',
+            is_followed: true,
+            aut_id: 111,
+            content: `
+            <p>孙中亮说：“从这个角度讲，随着我国北斗三号投入运行，实现了空间段的高可靠性，提供了技术支撑。再加上毫米波雷达摄像头等传感器，通过融合计算，实现汽车自动驾驶这样一种汽车智慧交通。”</p>
+    <div style='text-align:center'>
+        <img src='http://i2.chinanews.com.cn/simg/cmshd/2021/09/17/8dd46dc3f206438296d7805b4d672ad9.jpg' style='border:px solid #000000' ></div>
+    <div style='text-align: left; text-indent: 2em;'>华大北斗总经理孙中亮接受记者采访。<a target='_blank' href='http://www.chinanews.com/' >中新网</a>记者 张旭 摄</div>
+    <p>自动驾驶不仅关系到车，也关系到路，在车路协同方面，北斗能够发挥什么作用？</p>`,
+            art_id: '23',
+            is_collected: true,
+            attitude: true
+        
         }
     });
 })
