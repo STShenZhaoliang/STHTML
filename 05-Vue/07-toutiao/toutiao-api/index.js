@@ -319,6 +319,55 @@ app.delete('/app/v1_0/article/likings/:id', (req, res) => {
     })
 })
 
+// 获取文章评论列表
+app.get('/app/v1_0/comments', (req, res) => {
+    console.log('axios get 传递参数' + req.params)
+    res.json({
+        data: {
+            results: [{
+                aut_photo: "https://tse2-mm.cn.bing.net/th/id/OIP-C.l-gFmM0Y_zFtCDaYoAckXQHaFj?w=252&h=189&c=7&r=0&o=5&dpr=2&pid=1.7",
+                aut_name: "aut_name",
+                is_liking: false,
+                like_count: 1000,
+                content: "哈啦点击发送两地分居",
+                pubdate: '2021-09-18 16:22:16',
+                reply_count: 30000
+            }],
+            total_count: 327
+        }
+    })
+})
+
+
+// 点赞评论
+app.post('/app/v1_0/comment/likings', (req, res) => {
+    console.log('axios post 传递参数' + req.body)
+    res.json({
+        data: {
+            msg: 'success'
+        }
+    })
+})
+
+// 取消点赞评论
+app.delete('/app/v1_0/comment/likings/:id', (req, res) => {
+    console.log('axios delete 传递参数' + req.params.id)
+    res.json({
+        data: {
+            msg: 'success'
+        }
+    })
+})
+
+// 发布文章评论或评论回复
+app.post('/app/v1_0/comments', (req, res) => {
+    console.log('axios post 传递参数' + req.body)
+    res.json({
+        data: {
+            msg: 'success'
+        }
+    })
+})
 
 // 获取文章
 app.get('/app/v1_0/articles/:id', (req, res) => {
