@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: false }));
 // 设置允许跨域访问该服务
 app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
-    res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS, PATCH');
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
@@ -134,6 +134,32 @@ app.get('/app/v1_0/user', (req, res) => {
             follow_count: 2000,
             fans_count: 3000,
             like_count: 4000
+        }
+    });
+})
+
+// 获取当前登录用户的个人资料
+app.get('/app/v1_0/user/profile', (req, res) => {
+    console.log(req.body)
+    res.json({
+        data: {
+            photo: 'https://img.yzcdn.cn/vant/cat.jpeg',
+            name: 'st',
+            id: 1001,
+            mobile: 13512345678,
+            gender: 1,
+            birthday: '2021-09-22'
+        }
+    });
+})
+
+// 更新用户资料
+app.patch('/app/v1_0/user/profile', (req, res) => {
+    console.log('axios post 传递参数' + req.body)
+    console.log(req.body)
+    res.json({
+        data: {
+            msg: 'success'
         }
     });
 })
