@@ -1,0 +1,40 @@
+$nav-color: #F90;
+nav {
+  $width: 100px;
+  width: $width;
+  color: $nav-color;
+  background-color: black
+}
+
+$highlight-color: #f90;
+$basic-border: 1px solid black;
+// 注释
+#app {
+  background-color: $highlight-color;
+  border: $basic-border
+}
+
+#content {
+  article {
+    h1 {
+      color: #1dc08a;
+      font: {
+        size: 32px;
+        weight: 1000;
+        style: lighter;
+      }
+    }
+    p {
+      font-style: italic;
+    }
+    a {
+      color: blue;
+      &:hover {
+        color: red
+      }
+    }
+  }
+  aside {
+    background-color: #f90
+  }
+}
