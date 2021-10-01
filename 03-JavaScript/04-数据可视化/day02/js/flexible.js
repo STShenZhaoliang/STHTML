@@ -13,9 +13,9 @@
   }
   setBodyFontSize();
 
-  // set 1rem = viewWidth / 24  此时我们把屏幕平均划分为24等份
+  // set 1rem = viewWidth / 10
   function setRemUnit() {
-    var rem = docEl.clientWidth / 24
+    var rem = docEl.clientWidth / 20
     docEl.style.fontSize = rem + 'px'
   }
 
