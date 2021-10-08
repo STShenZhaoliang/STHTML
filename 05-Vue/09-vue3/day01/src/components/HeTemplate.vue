@@ -1,4 +1,5 @@
 <template>
+<div>
   <!-- 文本 -->
   <span>Message: {{ msg }}</span><br>
   <span v-once>这个将不会改变: {{ msg }}</span>
@@ -58,6 +59,7 @@
 
 <!-- 动态参数的缩写 (2.6.0+) -->
 <a @[event]="doSomething"> ... </a>
+</div>
 </template>
 
 <script>
