@@ -30,8 +30,8 @@ import COS from 'cos-js-sdk-v5' // 引入腾讯云cos包
 // 实例化COS对象
 const cos = new COS({
   // 同学们拷贝自己的秘钥和key 只有用自己的key和自己的秘钥才能上传到自己的存储桶里面
-  SecretId: 'AKID0mqfEWqlUzIbeSkGRL6c7ML6c0B93To9', // 身份识别 ID
-  SecretKey: 'JFwNZdeRF2iOp03FFsGNDm44vWFitmNF' // 身份密钥
+  SecretId: 'AKIDBH6fxyiCQN3SXQ4SZPr53kAJBm6C2iBN', // 身份识别 ID
+  SecretKey: '6D6j5AyXNyIL7cqneNuELEqBH6evvf8L' // 身份密钥
 })
 export default {
   data() {
@@ -102,7 +102,7 @@ export default {
       if (params.file) {
         // 执行上传操作
         cos.putObject({
-          Bucket: 'shuiruohanyu-106-1302806742', // 存储桶
+          Bucket: 'szlsay-1301558572', // 存储桶
           Region: 'ap-beijing', // 地域
           Key: params.file.name, // 文件名
           Body: params.file, // 要上传的文件对象
