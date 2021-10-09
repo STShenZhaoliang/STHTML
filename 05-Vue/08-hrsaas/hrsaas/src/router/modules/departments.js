@@ -1,4 +1,3 @@
-// 导出属于员工的路由规则
 // 导出员工的路由规则
 import Layout from '@/layout'
 export default {

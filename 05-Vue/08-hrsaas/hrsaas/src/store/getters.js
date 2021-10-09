@@ -9,4 +9,3 @@ const getters = {
   routes: state => state.permission.routes // 建立权限模块下的快捷访问
 }
 export default getters
-

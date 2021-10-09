@@ -30,7 +30,6 @@ const actions = {
   async login(context, data) {
     // 调用api接口
     const result = await login(data) // 拿到token
-    console.log('result=' + result)
     context.commit('setToken', result) // 设置token
     // 拿到token说明登录成功
     setTimeStamp() // 设置当前的时间戳
