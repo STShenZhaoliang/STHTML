@@ -30,7 +30,7 @@ export default {
   },
   data() {
     return {
-      company: {}, // 就是头部的数据结构
+      company: { }, // 就是头部的数据结构
       departs: [],
       defaultProps: {
         label: 'name' // 表示 从这个属性显示内容
